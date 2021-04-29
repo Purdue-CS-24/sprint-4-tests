@@ -32,11 +32,19 @@ Various tests collected from Campuswire posts.
 
 Various tests collected from Discord.
 
+ - `discord_test_1`: test case from Sprint 3 (should be blank under Sprint 4 requirements since it is invalid)
+ - `discord_test_2`: test case from Sprint 3 (also should be blank as it has an invalid tag level)
+ - `discord_test_3`: tests missing closing recognized tag
 
 ### `handout_test_x`
 
 Test cases from the handout.
 
+ - `handout_test_1`: test case from Sprint 3
+ - `handout_test_2`: test case from Sprint 3
+ - `handout_test_3`: test case from Sprint 4
+ - `handout_test_4`: tests missing closing recognized tag
+ - `handout_test_5`: tests file with invalid level nesting
 
 ### `self_test_x`
 
