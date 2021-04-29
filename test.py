@@ -1,11 +1,15 @@
 import os
 import subprocess
+import sys
 
 test_failed = False
+memory_test_enabled = False
 
 
-# Run each test case
 def test_run(test_file_name):
+    if memory_test_enabled:
+        return memtest_run(test_file_name=test_file_name)
+
     command = "./html_parser test_cases/{}.html output_test.txt".format(test_file_name)
     print("Run: {}".format(command))
     os.system(command)
@@ -23,6 +27,12 @@ def test_run(test_file_name):
             test_failed = True
 
 
+def memtest_run(test_file_name):
+    command = "valgrind --leak-check=full ./html_parser test_cases/{}.html output_test.txt".format(test_file_name)
+    print("Run: {}".format(command))
+    os.system(command)
+
+
 def test_suite_run(test_suite_name):
     # Go over directory and find all test cases that belong in a given suite
     i = 1
@@ -37,6 +47,10 @@ def test_suite_run(test_suite_name):
 def special_test_run(test_file_name, word_count_enabled=False, frequency_count_enabled=False, frequency_word="",
                      word_count=0, frequency_count=0):
     global test_failed
+
+    if memory_test_enabled:
+        return special_memtest_run(test_file_name, word_count_enabled=word_count_enabled,
+                                   frequency_count_enabled=frequency_count_enabled, frequency_word=frequency_word)
 
     command = "./html_parser "
     if word_count_enabled:
@@ -98,14 +112,48 @@ def special_test_run(test_file_name, word_count_enabled=False, frequency_count_e
             test_failed = True
 
 
+def special_memtest_run(test_file_name, word_count_enabled=False, frequency_count_enabled=False, frequency_word=""):
+    command = "valgrind --leak-check=full ./html_parser "
+    if word_count_enabled:
+        command += "-c "
+    if frequency_count_enabled:
+        command += "-f {} ".format(frequency_word)
+    command += "test_cases/{}.html output_test.txt".format(test_file_name)
+
+    print("Run: {}".format(command))
+    os.system(command)
+
+
+def memtest_prerequisites_check():
+    if sys.platform != "linux":
+        print("Warning: this script will only run on Linux distributions.")
+        sys.exit(0)
+    import distutils.spawn
+    if distutils.spawn.find_executable("valgrind") is None:
+        print("Warning: cannot find valgrind. This script needs valgrind to run properly.")
+        sys.exit(0)
+
+
 def main():
+    global memory_test_enabled
+
+    import argparse
+    parser = argparse.ArgumentParser(description='Runs tests for Sprint 4')
+    parser.add_argument('-m', '--memory', help='enables memtest mode (with valgrind)')
+    args = parser.parse_args()
+
+    if args.memory:
+        memtest_prerequisites_check()
+        memory_test_enabled = True
+
+    # Define all test cases here \/
     test_suite_run("discord_test")
     test_suite_run("handout_test")
     test_suite_run("self_test")
     test_suite_run("cw_test")
     test_suite_run("cs24_test")
 
-    # Define special tests here
+    # Define special tests here \/
     special_test_run("discord_test_1", word_count_enabled=True, word_count=32)
     special_test_run("discord_test_1", word_count_enabled=True, word_count=32, frequency_count_enabled=True,
                      frequency_word="document", frequency_count=3)
