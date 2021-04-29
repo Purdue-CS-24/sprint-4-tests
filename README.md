@@ -28,6 +28,13 @@ Various tests collected from Campuswire posts.
  - `cw_test_2`: tests unrecognized entity replacement
  - `cw_test_3`: tests unrecognized tags and text inside \<body\> tags
 
+
+### `cw_min_test_x`
+
+Tests from [this Campuswire post by Min Lu](https://campuswire.com/c/G3A7E1182/feed/1971) (thanks!)
+
+See the linked post for details. Files 1-9 should be valid examples, while files 10-17 are invalid examples.
+
 ### `discord_test_x`
 
 Various tests collected from Discord.

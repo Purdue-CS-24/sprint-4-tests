@@ -139,7 +139,7 @@ def main():
 
     import argparse
     parser = argparse.ArgumentParser(description='Runs tests for Sprint 4')
-    parser.add_argument('-m', '--memory', action='store_true', help='enables memtest mode (with valgrind)')
+    parser.add_argument('--memory', '-m', action='store_true', help='enables memtest mode (with valgrind)')
     args = parser.parse_args()
 
     if args.memory:
@@ -151,6 +151,7 @@ def main():
     test_suite_run("handout_test")
     test_suite_run("self_test")
     test_suite_run("cw_test")
+    test_suite_run("cw_min_test")
     test_suite_run("cs24_test")
 
     # Define special tests here \/
