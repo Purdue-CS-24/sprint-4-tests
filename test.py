@@ -103,6 +103,7 @@ def main():
     test_suite_run("handout_test")
     test_suite_run("self_test")
     test_suite_run("cw_test")
+    test_suite_run("cs24_test")
 
     # Define special tests here
     special_test_run("discord_test_1", word_count_enabled=True, word_count=32)
