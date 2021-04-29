@@ -1,0 +1,20 @@
+
+
+    Hello, testing all the entity replacements!
+
+        non-breaking space
+    < < less than
+    > > greater than
+    & & ampersand
+    " " double quotation mark
+    ' ' single quotation mark
+    cent cent cent
+    pound pound pound
+    yen yen yen
+    euro euro euro
+    copyright copyright copyright
+    trademark trademark registered trademark
+    section section section tag
+
+    centtrademarktrademarksection  We're also testing the replacement in attributes
+
