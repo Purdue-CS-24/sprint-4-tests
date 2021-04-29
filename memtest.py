@@ -1,4 +1,5 @@
 import os
+import sys
 
 
 # Run each test case
@@ -53,5 +54,16 @@ def main():
     os.remove("output_test.txt")
 
 
+def prerequisites_check():
+    if sys.platform != "linux":
+        print("Warning: this script will only run on Linux distributions.")
+        sys.exit(0)
+    import distutils.spawn
+    if distutils.spawn.find_executable("valgrind") is None:
+        print("Warning: cannot find valgrind. This script needs valgrind to run properly.")
+        sys.exit(0)
+
+
 if __name__ == "__main__":
+    prerequisites_check()
     main()
