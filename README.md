@@ -13,6 +13,12 @@ To test with valgrind, run `python3 test.py -m` or `python3 test.py --memory` (o
 Note that you need to manually review valgrind output for memory testing. The script will not automatically check 
 if the program does not leak memory.
 
+## Warning
+
+The automated script ignores all whitespaces when comparing output. This means that the script may make a mistake
+during grading and declare your program correct when it may not be. Always make sure to manually feed your program
+a couple of invalid examples and see if it behaves correctly.
+
 ## Test Breakdown
 
 ### `cs24_test_x`
