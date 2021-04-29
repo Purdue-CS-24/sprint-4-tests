@@ -163,10 +163,13 @@ def main():
     special_test_run("cw_test_1", word_count_enabled=True, word_count=3)
     special_test_run("cw_test_2", word_count_enabled=True, word_count=13)
 
-    if test_failed:
-        print("Some tests failed, see the differences above.")
+    if memory_test_enabled:
+        print("Finished running all valgrind tests. Please manually review the valgrind output for any memory leaks.")
     else:
-        print("All the tests passed!")
+        if test_failed:
+            print("Some tests failed, see the differences above.")
+        else:
+            print("All the tests passed!")
 
     # Clean up output file
     os.remove("output_test.txt")
