@@ -28,7 +28,7 @@ def test_run(test_file_name):
 
 
 def memtest_run(test_file_name):
-    command = "valgrind --leak-check=full ./html_parser test_cases/{}.html output_test.txt".format(test_file_name)
+    command = "valgrind --leak-check=full --show-leak-kinds=all ./html_parser test_cases/{}.html output_test.txt".format(test_file_name)
     print("Run: {}".format(command))
     os.system(command)
 
@@ -113,7 +113,7 @@ def special_test_run(test_file_name, word_count_enabled=False, frequency_count_e
 
 
 def special_memtest_run(test_file_name, word_count_enabled=False, frequency_count_enabled=False, frequency_word=""):
-    command = "valgrind --leak-check=full ./html_parser "
+    command = "valgrind --leak-check=full --show-leak-kinds=all ./html_parser "
     if word_count_enabled:
         command += "-c "
     if frequency_count_enabled:
