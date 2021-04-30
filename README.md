@@ -32,8 +32,6 @@ Various tests collected from Campuswire posts.
 
  - `cw_test_1`: tests missing recognized tag
  - `cw_test_2`: tests unrecognized entity replacement
- - `cw_test_3`: tests unrecognized tags and text inside \<body\> tags
-
 
 ### `cw_min_test_x`
 
